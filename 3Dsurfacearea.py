@@ -42,5 +42,5 @@ for R in range(M):
     print(r, ';', Index)
     L.append(Index)
 
-plt.plot(L, 'b.')
+plt.plot(L, 'b_')
 plt.show()
