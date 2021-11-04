@@ -48,9 +48,6 @@ for n in range(l):
     else:
         Lp.append(X)
     
-# plt.plot(L0, 'b_')
-# plt.show()
-    
     N = len(Ln)
     P = len(Lp)
     Nr = 100*N/(N + P)
