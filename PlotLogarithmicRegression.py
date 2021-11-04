@@ -1,5 +1,6 @@
 
 import math
+import statistics as stat
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -20,7 +21,6 @@ x = np.arange(1, l + 1, 1)
 y = np.array(L)
 
 fit = np.polyfit(np.log(x), y, 1)
-print(fit)
 
 a = float(fit[0])
 b = float(fit[1])
@@ -34,6 +34,8 @@ def g(n):
 L0 = []
 Ln = []
 Lp = []
+Lpr = []
+Ld = []
 Lz = []
 for n in range(l):
     X = L[n] - (a*(math.log(n + 1)) + b)
@@ -51,15 +53,31 @@ for n in range(l):
     
     N = len(Ln)
     P = len(Lp)
-
-    print(round(100*N/(N + P), 2), ":", round(100*P/(N + P), 2))
+    Nr = 100*N/(N + P)
+    Pr = 100*P/(N + P)
+    print("N:P ratio :", round(Nr, 2), ":", round(Pr, 2))
+    Lpr.append(Pr)
     
-    Z = -math.log(abs(np.mean(L0)))
-    print(Z)
+    if n != 0:
+        print(stat.stdev(L0))
+        Ld.append(stat.stdev(L0))
+    
+    Z = -math.log10(abs(np.mean(L0)))
+    print("MeanSimilarity :", Z)
     Lz.append(Z)
 
-plt.hist(L0, bins = 80)
+print("\nRegressionLogarithmicCurve :", str(str(a) + "log(x)"), "+", str(b))
+
+plt.hist(L0, bins = 100)
 plt.show()
 
-plt.plot(Lz, 'b_')
+plt.plot(Lpr, 'g-')
+plt.show()
+
+plt.plot(Ld, 'r-')
+plt.show()
+
+del Lz[l - 1]
+
+plt.plot(Lz, 'b-')
 plt.show()
