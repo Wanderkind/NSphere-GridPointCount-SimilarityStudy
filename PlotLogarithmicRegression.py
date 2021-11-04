@@ -35,8 +35,7 @@ L0 = []
 Ln = []
 Lp = []
 Lz = []
-for N in range(l - 1):
-    n = N + 1
+for n in range(l):
     X = L[n] - (a*(math.log(n + 1)) + b)
     
     L0.append(X)
