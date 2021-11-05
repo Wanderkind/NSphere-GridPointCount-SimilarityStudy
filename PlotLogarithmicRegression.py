@@ -38,7 +38,7 @@ Lpr = []
 Ld = []
 Lz = []
 for n in range(l):
-    X = L[n] - (a*(math.log(n + 1)) + b)
+    X = math.log(L[n]) - math.log(a*(math.log(n + 1)) + b)
     
     L0.append(X)
     
@@ -56,7 +56,7 @@ for n in range(l):
     Lpr.append(Pr)
     
     if n != 0:
-        print(stat.stdev(L0))
+        print("StandardDeviation :", stat.stdev(L0))
         Ld.append(stat.stdev(L0))
     
     Z = -math.log10(abs(np.mean(L0)))
@@ -64,6 +64,9 @@ for n in range(l):
     Lz.append(Z)
 
 print("\nRegressionLogarithmicCurve :", str(str(a) + "log(x)"), "+", str(b))
+
+plt.plot(L0, 'b_')
+plt.show()
 
 plt.hist(L0, bins = 100)
 plt.show()
@@ -73,8 +76,6 @@ plt.show()
 
 plt.plot(Ld, 'r-')
 plt.show()
-
-del Lz[l - 1]
 
 plt.plot(Lz, 'b-')
 plt.show()
