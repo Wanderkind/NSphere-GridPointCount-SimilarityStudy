@@ -52,7 +52,7 @@ for n in range(l):
     P = len(Lp)
     Nr = 100*N/(N + P)
     Pr = 100*P/(N + P)
-    print("N:P ratio :", round(Nr, 2), ":", round(Pr, 2))
+    print("\nN:P ratio :", round(Nr, 2), ":", round(Pr, 2))
     Lpr.append(Pr)
     
     if n != 0:
