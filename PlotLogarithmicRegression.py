@@ -90,7 +90,7 @@ plt.title('Log Mean')
 
 plt.subplot(2, 3, 6)
 plt.plot(Lz, 'b-')
-plt.title('Mean NegLog')
+plt.title('Mean LogNegative')
 
 plt.show()
 
