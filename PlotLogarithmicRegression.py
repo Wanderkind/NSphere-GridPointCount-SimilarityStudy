@@ -7,10 +7,10 @@ import matplotlib.pyplot as plt
 L = []
 
 while True:
-    X = input()
+    plot = input()
     
-    if X != '':
-        L.append(float(X))
+    if plot != '':
+        L.append(float(plot))
         
     else:
         break
@@ -26,10 +26,7 @@ a = float(fit[0])
 b = float(fit[1])
 
 def f(n):
-    a*(math.log(n + 1)) + b
-
-def g(n):
-    float(math.log(float(L[n]))) - float(math.log(f(n + 1)))
+    return a*(math.log(n + 1)) + b
 
 L0 = []
 Ln = []
@@ -39,8 +36,12 @@ Ld = []
 Lm = []
 Lz = []
 for n in range(l):
-    X = math.log(L[n]) - math.log(a*(math.log(n + 1)) + b)
     
+    print('\nplot :', L[n])
+    print('f(n) :', f(n))
+    
+    X = math.log(L[n]) - math.log(f(n))
+    print('log(plot/f(n)) :', X)
     L0.append(X)
     
     if X < 0:
@@ -53,7 +54,7 @@ for n in range(l):
     P = len(Lp)
     Nr = 100*N/(N + P)
     Pr = 100*P/(N + P)
-    print('\nN:P ratio :', round(Nr, 2), ':', round(Pr, 2))
+    print('N:P ratio :', round(Nr, 2), ':', round(Pr, 2))
     Lpr.append(Pr)
     
     if n != 0:
@@ -70,11 +71,11 @@ print('\nRegressionLogarithmicCurve :', str(str(a) + 'log(x)'), '+', str(b))
 
 plt.subplot(2, 3, 1)
 plt.plot(L0, 'b_')
-plt.title('PlotToRegression RatioLog')
+plt.title('log(plot/f(n))')
 
 plt.subplot(2, 3, 2)
 plt.hist(L0, bins = 100)
-plt.title('RatioLog Histogram')
+plt.title('Log Histogram')
 
 plt.subplot(2, 3, 3)
 plt.plot(Lpr, 'g-')
@@ -90,8 +91,8 @@ plt.title('Log Mean')
 
 plt.subplot(2, 3, 6)
 plt.plot(Lz, 'b-')
-plt.title('Mean LogNegative')
+plt.title('Mean Log10Negative')
 
 plt.show()
 
-# fit to be adjusted so that Mean converges to 0.
+# fit to be adjusted so that Mean converges to 0, and StandardDeviation converges to the smallest value.
